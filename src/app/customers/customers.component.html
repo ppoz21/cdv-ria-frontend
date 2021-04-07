@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="col-12 mt-4">
+    <div class="jumbotron">
+      <h1 class="text-center">
+        Our customers
+      </h1>
+      <div class="row my-4 justify-content-center">
+        <button mdbBtn type="button" [block]="true" color="default" mdbWavesEffect data-toggle="modal" (click)="frame.show()">Add new customer</button>
+      </div>
+      <div class="row">
+        <div class="md-form">
+          <input mdbInput type="number" id="form2" class="form-control" min="0" autocomplete="off" #filterNumOrders>
+          <label for="form2">Orders more or equal than</label>
+          <button mdbBtn type="button" color="primary" mdbWavesEffect (click)="filter(+filterNumOrders.value)">Filter</button>
+        </div>
+        <table mdbTable [striped]="true" [bordered]="true" class="text-center table-responsive-sm">
+          <thead>
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Address</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">Number of orders</th>
+            <th scope="col">Actions</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let customer of customers; index as i">
+              <th scope="row" class="align-middle">{{i+1}}</th>
+              <td class="align-middle">{{customer.firstName}}</td>
+              <td class="align-middle">{{customer.lastName}}</td>
+              <td class="align-middle">{{customer.street}} {{customer.number}}{{customer.flat ? '/' + customer.flat : ''}}</td>
+              <td class="align-middle">{{customer.email}}</td>
+              <td class="align-middle">{{customer.phoneNo}}</td>
+              <td class="align-middle">{{customer.ordersNo}}</td>
+              <td><a mdbBtn type="button" color="primary" routerLink="/customers/details/{{customer.id}}" mdbWavesEffect>Edit</a><button mdbBtn type="button" color="danger" mdbWavesEffect (click)="delete(customer)">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div mdbModal #frame="mdbModal" class="modal fade left" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add new customer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" #firstName class="form-control mb-4" placeholder="First name" required="required">
+          <input type="text" #lastName class="form-control mb-4" placeholder="Last name" required="required">
+          <input type="text" #street class="form-control mb-4" placeholder="Street" required="required">
+          <input type="text" #number class="form-control mb-4" placeholder="Number" required="required">
+          <input type="text" #flat class="form-control mb-4" placeholder="Flat">
+          <input type="email" #email class="form-control mb-4" placeholder="E-mail">
+          <input type="text" #phoneNo class="form-control mb-4" placeholder="Phone number" required="required">
+          <input type="number" #ordersNo class="form-control mb-4" min="0" placeholder="Number of orders" required="required">
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="create(firstName.value, lastName.value, street.value,
+        number.value, flat.value, email.value, phoneNo.value, +ordersNo.value);firstName.value=''; lastName.value=''; street.value='';
+        number.value=''; flat.value=''; email.value=''; phoneNo.value=''; ordersNo.value=''; frame.hide()">Save customer</button>
+      </div>
+    </div>
+  </div>
+</div>

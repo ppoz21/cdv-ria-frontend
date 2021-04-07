@@ -1,0 +1,43 @@
+<div class="container-fluid" *ngIf="customer">
+  <div class="col-12 mt-4">
+    <div class="jumbotron text-center">
+      <h1>
+        {{ customer.firstName }} {{customer.lastName}} details
+      </h1>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input id="firstName" [(ngModel)]="customer.firstName" placeholder="First name" class="form-control text-center">
+      </div>
+      <div class="form-group">
+        <label for="lastName">First name</label>
+        <input id="lastName" [(ngModel)]="customer.lastName" placeholder="Last name" class="form-control text-center">
+      </div>
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input id="street" [(ngModel)]="customer.street" placeholder="Street" class="form-control text-center">
+      </div>
+      <div class="form-group">
+        <label for="number">First name</label>
+        <input id="number" [(ngModel)]="customer.number" placeholder="Number" class="form-control text-center">
+      </div>
+      <div class="form-group">
+        <label for="flat">First name</label>
+        <input id="flat" [(ngModel)]="customer.flat" placeholder="Flat" class="form-control text-center">
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input id="email" [(ngModel)]="customer.email" placeholder="E-mail" class="form-control text-center">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone number</label>
+        <input id="phone" [(ngModel)]="customer.phoneNo" placeholder="Phone number" class="form-control text-center">
+      </div>
+      <div class="form-group">
+        <label for="orders">Number of orders</label>
+        <input id="orders" [(ngModel)]="customer.ordersNo" placeholder="Orders number" type="number" min="0" class="form-control text-center">
+      </div>
+      <button (click)="goBack()" mdbBtn type="button" color="primary" mdbWavesEffect>Back</button>
+      <button (click)="save()" mdbBtn type="button" color="default" mdbWavesEffect>Save</button>
+    </div>
+  </div>
+</div>
