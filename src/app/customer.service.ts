@@ -14,7 +14,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  private customersApiUrl = 'http://ria-backend.us-east-1.elasticbeanstalk.com/public/index.php/api/customers';
+  private customersApiUrl = 'http://ria-backend.us-east-1.elasticbeanstalk.com/index.php/api/customers';
 
   getCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.customersApiUrl, httpOptions);
